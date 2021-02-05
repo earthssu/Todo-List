@@ -2,7 +2,17 @@ body {
   background-color: #58b4b4;
 }
 
-#box {
+#todo_box {
+  background-color: #fbfbfb;
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 5rem;
+  padding: 1rem 0;
+  text-align: center;
+  border-radius: 15px 15px;
+}
+
+#complete_box {
   background-color: #fbfbfb;
   width: 600px;
   margin: 0 auto;
@@ -28,7 +38,7 @@ body {
   border-radius: 5px 5px;
 }
 
-#button {
+#add_button {
   height: auto;
   line-height: normal;
   padding: 0.6em 0.8em;
@@ -38,12 +48,12 @@ body {
   color: #ffffff;
 }
 
-#list-box {
+.list_box {
   width: 90%;
   overflow-y: auto;
 }
 
-.list-item {
+.list_item {
   padding: 1rem 1rem;
   font-family: "Nanum Gothic", sans-serif;
   font-weight: 700;
@@ -57,5 +67,16 @@ body {
   border: 0;
   border-radius: 5px 5px;
   background-color: #da3939;
+  color: #ffffff;
+}
+
+#complete {
+  vertical-align: middle;
+  float: right;
+  padding: 0.2em 0.4em;
+  margin-right: 0.3em;
+  border: 0;
+  border-radius: 5px 5px;
+  background-color: #3194bd;
   color: #ffffff;
 }

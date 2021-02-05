@@ -5,17 +5,24 @@
         <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
     </head>
     <body>
-        <div id="box">
+        <div id="todo_box">
             <div id="title">TODO LIST</div>
             <div>
                 <input type="text" placeholder="todo" id="input">
-                <button type="button" id="button">+</button>
+                <button type="button" id="add_button">+</button>
             </div>
             <div>
-                <ul id="list-box">
+                <ul class="list_box" id="todo_list">
                 </ul>
             </div>
         </div>
-    <script src="./TodoList.js"></script>
+        <div id="complete_box">
+            <div id="title">완료</div>
+            <div>
+                <ul class="list_box" id="complete_list">
+                </ul>
+            </div>
+        </div>
+        <script src="./TodoList.js" charset="UTF-8"></script>
     </body>
 </html>
