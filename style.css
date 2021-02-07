@@ -4,7 +4,7 @@ body {
 
 #todo_box {
   background-color: #fbfbfb;
-  width: 600px;
+  width: 700px;
   margin: 0 auto;
   margin-top: 5rem;
   padding: 1rem 0;
@@ -14,7 +14,7 @@ body {
 
 #complete_box {
   background-color: #fbfbfb;
-  width: 600px;
+  width: 700px;
   margin: 0 auto;
   margin-top: 5rem;
   padding: 1rem 0;
@@ -29,9 +29,18 @@ body {
   font-weight: 900;
 }
 
-#input {
-  width: 80%;
-  height: auto;
+#todo_input {
+  width: 55%;
+  height: 30px;
+  line-height: normal;
+  padding: 0.5em 0.5em;
+  border: 1px solid #dedede;
+  border-radius: 5px 5px;
+}
+
+#date_input {
+  width: 25%;
+  height: 30px;
   line-height: normal;
   padding: 0.5em 0.5em;
   border: 1px solid #dedede;
@@ -39,7 +48,7 @@ body {
 }
 
 #add_button {
-  height: auto;
+  height: 30px;
   line-height: normal;
   padding: 0.6em 0.8em;
   border: 0;
@@ -58,6 +67,15 @@ body {
   font-family: "Nanum Gothic", sans-serif;
   font-weight: 700;
   text-align: left;
+}
+
+.item {
+  display: inline-block;
+  width: 165px;
+}
+
+.dday {
+  color: #f38137;
 }
 
 #remove {
