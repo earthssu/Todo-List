@@ -2,24 +2,37 @@ body {
   background-color: #58b4b4;
 }
 
-#todo_box {
+label {
+  font-size: 13px;
+  font-weight: 550;
+}
+
+#todo-box {
   background-color: #fbfbfb;
-  width: 700px;
-  margin: 0 auto;
+  width: 50%;
+  float: left;
+  overflow: auto;
   margin-top: 5rem;
+  margin-left: 3.5rem;
   padding: 1rem 0;
   text-align: center;
   border-radius: 15px 15px;
 }
 
-#complete_box {
+#complete-box {
   background-color: #fbfbfb;
-  width: 700px;
-  margin: 0 auto;
+  width: 40%;
+  float: right;
+  overflow: auto;
   margin-top: 5rem;
+  margin-right: 3.5rem;
   padding: 1rem 0;
   text-align: center;
   border-radius: 15px 15px;
+}
+
+.input-box {
+  margin-top: 0.5em;
 }
 
 #title {
@@ -29,8 +42,8 @@ body {
   font-weight: 900;
 }
 
-#todo_input {
-  width: 55%;
+#todo-input {
+  width: 80%;
   height: 30px;
   line-height: normal;
   padding: 0.5em 0.5em;
@@ -38,8 +51,8 @@ body {
   border-radius: 5px 5px;
 }
 
-#date_input {
-  width: 25%;
+#date-input {
+  width: 35%;
   height: 30px;
   line-height: normal;
   padding: 0.5em 0.5em;
@@ -47,22 +60,38 @@ body {
   border-radius: 5px 5px;
 }
 
-#add_button {
+#todo-select {
+  width: 35%;
+  height: 30px;
+  line-height: normal;
+  padding: 0.5em 0.5em;
+  border: 1px solid #dedede;
+  border-radius: 5px 5px;
+}
+
+#add-button {
   height: 30px;
   line-height: normal;
   padding: 0.6em 0.8em;
   border: 0;
   border-radius: 5px 5px;
-  background-color: #3c3c3c;
+  background-color: #427f7f;
   color: #ffffff;
 }
 
-.list_box {
+.todo-list-box {
   width: 90%;
-  overflow-y: auto;
+  height: 300px;
+  overflow: auto;
 }
 
-.list_item {
+.complete-list-box {
+  width: 90%;
+  height: 368px;
+  overflow: auto;
+}
+
+.list-item {
   padding: 1rem 1rem;
   font-family: "Nanum Gothic", sans-serif;
   font-weight: 700;
@@ -71,27 +100,31 @@ body {
 
 .item {
   display: inline-block;
-  width: 165px;
+  width: 200px;
 }
 
 .dday {
-  color: #f38137;
+  color: #ffa500;
 }
 
-#remove {
+.select-item {
+  color: #58b4b4;
+}
+
+.remove {
   vertical-align: middle;
   float: right;
-  padding: 0.2em 0.4em;
+  padding: 0.1em 0.3em;
   border: 0;
   border-radius: 5px 5px;
   background-color: #da3939;
   color: #ffffff;
 }
 
-#complete {
+.complete {
   vertical-align: middle;
   float: right;
-  padding: 0.2em 0.4em;
+  padding: 0.1em 0.3em;
   margin-right: 0.3em;
   border: 0;
   border-radius: 5px 5px;

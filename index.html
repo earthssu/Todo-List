@@ -5,22 +5,36 @@
         <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
     </head>
     <body>
-        <div id="todo_box">
+        <div id="todo-box">
             <div id="title">TODO LIST</div>
             <div>
-                <input type="text" placeholder="todo" id="todo_input">
-                <input type="date" id="date_input">
-                <button type="button" id="add_button">+</button>
+                <div>
+                    <label for="todo-input">할일</label>
+                    <input type="text" id="todo-input">
+                </div>
+                <div class="input-box">
+                    <label for="date-input">기한</label>
+                    <input type="date" id="date-input">
+                    <label for="todo-select">분류</label>
+                    <select name="todo-select" id="todo-select">
+                    <option value="" disabled>-- 분류 --</option>
+                    <option value="school">학교</option>
+                    <option value="schedule">외부</option>
+                    <option value="anniversary">기념일</option>
+                    <option value="etc">기타</option>
+                </select>
+                <button type="button" id="add-button">+</button>
+                </div>
             </div>
             <div>
-                <ul class="list_box" id="todo_list">
+                <ul class="todo-list-box" id="todo-list">
                 </ul>
             </div>
         </div>
-        <div id="complete_box">
+        <div id="complete-box">
             <div id="title">완료</div>
             <div>
-                <ul class="list_box" id="complete_list">
+                <ul class="complete-list-box" id="complete-list">
                 </ul>
             </div>
         </div>
