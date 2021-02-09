@@ -6,7 +6,7 @@
 
 ## demo
 
-![demo01](https://user-images.githubusercontent.com/39795055/107362179-c3e84400-6b1b-11eb-8c31-8e30b864bdc2.png)
+![demo01](https://user-images.githubusercontent.com/39795055/107363788-fd21b380-6b1d-11eb-9e9d-2fdebb034f5b.png)
 
 ### 기능(2020.02.09 업데이트)
 

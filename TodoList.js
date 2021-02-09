@@ -7,6 +7,18 @@ const completeList = document.getElementById("complete-list");
 
 let todoId = 1;
 
+const replaceSelect = (select) => {
+  if (select === "school") {
+    return "학교";
+  } else if (select === "schedule") {
+    return "외부";
+  } else if (select === "anniversary") {
+    return "기념일";
+  } else {
+    return "기타";
+  }
+};
+
 const clickButton = () => {
   let today = new Date();
   const [year, month, day] = dateInput.value.split("-");
@@ -14,11 +26,13 @@ const clickButton = () => {
   let gap = today.getTime() - dueDate.getTime();
   let dday = Math.floor(gap / (1000 * 60 * 60 * 24)) * -1;
 
+  const select = replaceSelect(selectInput.value);
+
   let todo = document.createElement("li");
   todo.setAttribute("class", "list-item");
   todo.setAttribute("id", "li" + todoId);
   todo.innerHTML = `<span class='item'>${todoInput.value} 
-  <span class="select-item">(${selectInput.value})</span></span>
+  <span class="select-item">(${select})</span></span>
   <span class='item'>${dateInput.value}</span>
   <span class='dday'>D-${dday}</span>
   <button type='button' class='remove' onClick='todoRemove("${todoId}")'>삭제</button>
