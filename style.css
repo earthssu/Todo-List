@@ -67,6 +67,18 @@ label {
   border-radius: 5px 5px;
 }
 
+#category {
+  float: left;
+  width: 15%;
+  height: 25px;
+  line-height: normal;
+  margin-left: 7%;
+  padding: 0.5em 0.5em;
+  border: 1px solid #dedede;
+  border-radius: 5px 5px;
+  font-size: 11px;
+}
+
 #add-button {
   height: 30px;
   line-height: normal;
@@ -85,7 +97,7 @@ label {
 
 .complete-list-box {
   width: 90%;
-  height: 383px;
+  height: 410px;
   overflow: auto;
 }
 

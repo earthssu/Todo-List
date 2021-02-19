@@ -8,25 +8,34 @@
         <div id="todo-box">
             <h1 class="title">TODO LIST</h1>
             <div>
-                <div>
-                    <label for="todo-input">할일</label>
-                    <input type="text" id="todo-input">
-                </div>
-                <div class="input-box">
-                    <label for="date-input">기한</label>
-                    <input type="date" id="date-input">
-                    <label for="todo-select">분류</label>
-                    <select name="todo-select" id="todo-select">
-                        <option value="" disabled>-- 분류 --</option>
-                        <option value="school">학교</option>
-                        <option value="schedule">외부</option>
-                        <option value="anniversary">기념일</option>
-                        <option value="etc">기타</option>
-                    </select>
-                    <button type="button" id="add-button">+</button>
-                </div>
+                <form id="todo-form">
+                    <div>
+                        <label for="todo-input">할일</label>
+                        <input type="text" id="todo-input">
+                    </div>
+                    <div class="input-box">
+                        <label for="date-input">기한</label>
+                        <input type="date" id="date-input">
+                        <label for="todo-select">분류</label>
+                        <select name="todo-select" id="todo-select">
+                            <option value="" disabled>-- 분류 --</option>
+                            <option value="school">학교</option>
+                            <option value="schedule">외부</option>
+                            <option value="anniversary">기념일</option>
+                            <option value="etc">기타</option>
+                        </select>
+                        <button type="submit" id="add-button">+</button>
+                    </div>
+                </form>
             </div>
             <div>
+                <select name="category" id="category" onchange="categoryChange()">
+                    <option value="all">전체</option>
+                    <option value="school">학교</option>
+                    <option value="schedule">외부</option>
+                    <option value="anniversary">기념일</option>
+                    <option value="etc">기타</option>
+                </select>
                 <ul class="todo-list-box" id="todo-list">
                 </ul>
             </div>

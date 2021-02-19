@@ -1,9 +1,11 @@
-const addButton = document.querySelector("#add-button");
+const todoForm = document.querySelector("#todo-form");
+
 const todoInput = document.querySelector("#todo-input");
 const dateInput = document.querySelector("#date-input");
 const selectInput = document.querySelector("#todo-select");
-const todoList = document.getElementById("todo-list");
-const completeList = document.getElementById("complete-list");
+
+const todoList = document.querySelector("#todo-list");
+const completeList = document.querySelector("#complete-list");
 
 let todoBucket = [];
 let completeBucket = [];
@@ -19,12 +21,14 @@ const replaceSelect = (select) => {
     return "외부";
   } else if (select === "anniversary") {
     return "기념일";
-  } else {
+  } else if (select === "etc") {
     return "기타";
+  } else if (select === "all") {
+    return "전체";
   }
 };
 
-const clickButton = () => {
+const addTodo = () => {
   const uid = guid();
   let today = new Date();
   const [year, month, day] = dateInput.value.split("-");
@@ -42,116 +46,119 @@ const clickButton = () => {
     dday: dday,
   };
 
-  let li = document.createElement("li");
-  li.setAttribute("class", "list-item");
-  li.setAttribute("id", `${uid}`);
-
-  li.innerHTML = `
-    <span class="select-item">${select}</span>
-    <span class='item todo-item'>${todoInput.value} </span>
-    <span class='item date-item'>${dateInput.value}</span>
-    <span class='dday'>D-${dday}</span>
-    <button type='button' class='remove' onClick='todoRemove("${uid}")'>삭제</button>
-    <button type='button' class='complete'onClick='complete("${uid}")'>완료</button>`;
-
-  todoList.appendChild(li);
-
   todoBucket.push(todo);
-
-  todoStorage();
+  todoStorage(todoBucket);
 };
 
-const todoStorage = () => {
-  localStorage.setItem("todoItems", JSON.stringify(todoBucket));
-};
-
-const completeStorage = () => {
-  localStorage.setItem("completeItems", JSON.stringify(completeBucket));
-};
-
-const todoRemove = (id) => {
-  const li = document.getElementById(id);
-  li.remove();
-  todoBucket = todoBucket.filter((x) => x.id !== id);
-  todoStorage();
-};
-
-const completeRemove = (id) => {
-  const li = document.getElementById(id);
-  li.remove();
-  completeBucket = completeBucket.filter((x) => x.id !== id);
-  completeStorage();
-};
-
-const complete = (id) => {
+const addComplete = (id) => {
   const li = document.getElementById(id);
   const title = li.querySelector(".todo-item").innerText;
   const select = li.querySelector(".select-item").innerText;
   const date = li.querySelector(".date-item").innerText;
 
-  const finish = {
+  const complete = {
     id: id,
     select: select,
     title: title,
     date: date,
   };
 
-  let complt = document.createElement("li");
-  complt.setAttribute("class", "list-item");
-  complt.setAttribute("id", `${id}`);
-  complt.innerHTML = `
-    <span class="select-item">${select}</span>
-    <span class='item'>${title}</span>
-    <span class='item'>${date}</span>
-    <button type='button' class='remove' onClick='completeRemove("${id}")'>삭제</button>`;
-
-  completeList.appendChild(complt);
-
-  completeBucket.push(finish);
-
+  completeBucket.push(complete);
   todoRemove(id);
-  completeStorage();
+  completeStorage(completeBucket);
 };
 
-const printStorage = () => {
-  const getTodoData = localStorage.getItem("todoItems");
-  const getCompleteData = localStorage.getItem("completeItems");
-  const todoItem = JSON.parse(getTodoData);
-  const completeItem = JSON.parse(getCompleteData);
+const renderTodos = (todoBucket) => {
+  todoList.innerHTML = "";
 
-  if (todoItem) {
-    todoItem.forEach((item) => {
-      let li = document.createElement("li");
-      li.setAttribute("class", "list-item");
-      li.setAttribute("id", `${item.id}`);
+  todoBucket.forEach((item) => {
+    let li = document.createElement("li");
+    li.setAttribute("class", "list-item");
+    li.setAttribute("id", `${item.id}`);
 
-      li.innerHTML = `
-        <span class="select-item">${item.select}</span>
-        <span class='item todo-item'>${item.title}</span>
-        <span class='item date-item'>${item.date}</span>
-        <span class='dday'>D-${item.dday}</span>
-        <button type='button' class='remove' onClick='todoRemove("${item.id}")'>삭제</button>
-        <button type='button' class='complete'onClick='complete("${item.id}")'>완료</button>`;
+    li.innerHTML = `
+    <span class="select-item">${item.select}</span>
+    <span class='item todo-item'>${item.title} </span>
+    <span class='item date-item'>${item.date}</span>
+    <span class='dday'>D-${item.dday}</span>
+    <button type='button' class='remove' onClick='todoRemove("${item.id}")'>삭제</button>
+    <button type='button' class='complete'>완료</button>`;
 
-      todoList.appendChild(li);
-    });
+    todoList.appendChild(li);
+  });
+};
+
+const renderComplete = (completeBucket) => {
+  completeList.innerHTML = "";
+
+  completeBucket.forEach((item) => {
+    let li = document.createElement("li");
+    li.setAttribute("class", "list-item");
+    li.setAttribute("id", `${item.id}`);
+
+    li.innerHTML = `
+    <span class="select-item">${item.select}</span>
+    <span class='item'>${item.title}</span>
+    <span class='item'>${item.date}</span>
+    <button type='button' class='remove'>삭제</button>`;
+
+    completeList.appendChild(li);
+  });
+};
+
+const todoStorage = (todoBucket) => {
+  localStorage.setItem("todoItems", JSON.stringify(todoBucket));
+  renderTodos(todoBucket);
+};
+
+const completeStorage = (completeBucket) => {
+  localStorage.setItem("completeItems", JSON.stringify(completeBucket));
+  renderComplete(completeBucket);
+};
+
+const todoRemove = (id) => {
+  todoBucket = todoBucket.filter((x) => x.id != id);
+  todoStorage(todoBucket);
+};
+
+const completeRemove = (id) => {
+  completeBucket = completeBucket.filter((x) => x.id != id);
+  completeStorage(completeBucket);
+};
+
+const getFromLocalStorage = () => {
+  const todoReference = localStorage.getItem("todoItems");
+  const completeReference = localStorage.getItem("completeItems");
+
+  if (todoReference) {
+    todos = JSON.parse(todoReference);
+    renderTodos(todos);
   }
-
-  if (completeItem) {
-    completeItem.forEach((item) => {
-      let li = document.createElement("li");
-      li.setAttribute("class", "list-item");
-      li.setAttribute("id", `${item.id}`);
-      li.innerHTML = `
-        <span class="select-item">${item.select}</span>
-        <span class='item'>${item.title}</span>
-        <span class='item'>${item.date}</span>
-        <button type='button' class='remove' onClick='completeRemove("${item.id}")'>삭제</button>`;
-
-      completeList.appendChild(li);
-    });
+  if (completeReference) {
+    complete = JSON.parse(completeReference);
+    renderComplete(complete);
   }
 };
 
-addButton.addEventListener("click", clickButton);
-window.onload = printStorage();
+todoForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  addTodo();
+});
+
+getFromLocalStorage();
+
+todoList.addEventListener("click", (event) => {
+  if (event.target.classList.contains("remove")) {
+    todoRemove(event.target.parentElement.getAttribute("id"));
+  }
+
+  if (event.target.classList.contains("complete")) {
+    addComplete(event.target.parentElement.getAttribute("id"));
+  }
+});
+
+completeList.addEventListener("click", (event) => {
+  if (event.target.classList.contains("remove")) {
+    completeRemove(event.target.parentElement.getAttribute("id"));
+  }
+});
