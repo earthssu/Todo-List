@@ -126,6 +126,19 @@ const completeRemove = (id) => {
   completeStorage(completeBucket);
 };
 
+const categoryChange = () => {
+  const category = document.querySelector("#category").value;
+  const cateReplace = replaceSelect(category);
+
+  let todos = JSON.parse(localStorage.getItem("todoItems"));
+
+  if (cateReplace != "전체") {
+    todos = todos.filter((x) => x.select == cateReplace);
+  }
+
+  renderTodos(todos);
+};
+
 const getFromLocalStorage = () => {
   const todoReference = localStorage.getItem("todoItems");
   const completeReference = localStorage.getItem("completeItems");
