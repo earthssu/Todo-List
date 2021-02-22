@@ -28,13 +28,28 @@ const replaceSelect = (select) => {
   }
 };
 
-const addTodo = () => {
-  const uid = guid();
+const getDday = (date) => {
   let today = new Date();
-  const [year, month, day] = dateInput.value.split("-");
+  const [year, month, day] = date.split("-");
   let dueDate = new Date(year, month - 1, day);
   let gap = today.getTime() - dueDate.getTime();
   let dday = Math.floor(gap / (1000 * 60 * 60 * 24)) * -1;
+
+  if (dday == 0) {
+    dday = "-DAY";
+  } else if (dday < 0) {
+    dday = -dday;
+    dday = "+" + dday;
+  } else {
+    dday = "-" + dday;
+  }
+
+  return dday;
+};
+
+const addTodo = () => {
+  const uid = guid();
+  const dday = getDday(dateInput.value);
 
   const select = replaceSelect(selectInput.value);
 
@@ -80,7 +95,7 @@ const renderTodos = (todoBucket) => {
     <span class="select-item">${item.select}</span>
     <span class='item todo-item'>${item.title} </span>
     <span class='item date-item'>${item.date}</span>
-    <span class='dday'>D-${item.dday}</span>
+    <span class='dday'>D${item.dday}</span>
     <button type='button' class='remove' onClick='todoRemove("${item.id}")'>삭제</button>
     <button type='button' class='complete'>완료</button>`;
 
@@ -139,12 +154,19 @@ const categoryChange = () => {
   renderTodos(todos);
 };
 
+const ddayChange = (todos) => {
+  todos = todos.map((item) => {
+    item.dday = getDday(item.date);
+  });
+};
+
 const getFromLocalStorage = () => {
   const todoReference = localStorage.getItem("todoItems");
   const completeReference = localStorage.getItem("completeItems");
 
   if (todoReference) {
     todos = JSON.parse(todoReference);
+    ddayChange(todos);
     renderTodos(todos);
   }
   if (completeReference) {

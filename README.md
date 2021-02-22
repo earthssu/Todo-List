@@ -6,10 +6,9 @@
 
 ## demo
 
-![demo01](https://user-images.githubusercontent.com/39795055/108480001-c2680a00-72d9-11eb-978b-cc8dcda99a77.png)
-![demo02](https://user-images.githubusercontent.com/39795055/108480007-c3993700-72d9-11eb-9a62-744eceddd891.png)
+![demo01](https://user-images.githubusercontent.com/39795055/108691360-c34da580-753e-11eb-8c71-3d9155382bab.png)
 
-### 기능(2020.02.19 업데이트)
+### 기능(2020.02.22 업데이트)
 
 - 할 일 추가 : 입력 박스에 할 일을 작성하고 오른쪽 '+' 버튼을 누른다
 - 남은 일자 표시 : 할 일 입력시 마감 날짜를 함께 설정할 경우 마감 일정과 함께 남은 날짜가 표시된다.
