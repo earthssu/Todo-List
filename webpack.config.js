@@ -4,7 +4,7 @@ const path = require("path");
 module.exports = {
   entry: "./src/TodoList.js",
   output: {
-    path: __dirname + "/dist",
+    path: path.join(__dirname, "./dist/"),
     filename: "app.bundle.js",
   },
   module: {
@@ -17,8 +17,8 @@ module.exports = {
         test: /\.js$/,
         loader: "babel-loader",
         exclude: /node_modules/,
-        query: {
-          presets: ["es2015"],
+        options: {
+          presets: ["@babel/preset-env"],
         },
       },
     ],

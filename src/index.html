@@ -1,35 +1,33 @@
 <html>
     <head>
         <title>Todo List</title>
-        <link rel="stylesheet" href="./style.css">
-        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+        <link href="./style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap">
     </head>
     <body>
         <div id="todo-box">
             <h1 class="title">TODO LIST</h1>
+            <form id="todo-form" method="post">
+                <div>
+                    <label for="todo-input">할일</label>
+                    <input type="text" id="todo-input">
+                </div>
+                <div class="input-box">
+                    <label for="date-input">기한</label>
+                    <input type="date" id="date-input">
+                    <label for="todo-select">분류</label>
+                    <select name="todo-select" id="todo-select">
+                        <option value="" disabled>-- 분류 --</option>
+                        <option value="school">학교</option>
+                        <option value="schedule">외부</option>
+                        <option value="anniversary">기념일</option>
+                        <option value="etc">기타</option>
+                    </select>
+                    <button type="submit" id="add-button">+</button>
+                </div>
+            </form>
             <div>
-                <form id="todo-form" method="post">
-                    <div>
-                        <label for="todo-input">할일</label>
-                        <input type="text" id="todo-input">
-                    </div>
-                    <div class="input-box">
-                        <label for="date-input">기한</label>
-                        <input type="date" id="date-input">
-                        <label for="todo-select">분류</label>
-                        <select name="todo-select" id="todo-select">
-                            <option value="" disabled>-- 분류 --</option>
-                            <option value="school">학교</option>
-                            <option value="schedule">외부</option>
-                            <option value="anniversary">기념일</option>
-                            <option value="etc">기타</option>
-                        </select>
-                        <button type="submit" id="add-button">+</button>
-                    </div>
-                </form>
-            </div>
-            <div>
-                <select name="category" id="category" onchange="categoryChange()">
+                <select name="category" class="category">
                     <option value="all">전체</option>
                     <option value="school">학교</option>
                     <option value="schedule">외부</option>
@@ -47,6 +45,6 @@
                 </ul>
             </div>
         </div>
-        <script type="module" src="./TodoList.js" charset="UTF-8"></script>
+        <script type="module" src="../dist/app.bundle.js" charset="UTF-8"></script>
     </body>
 </html>

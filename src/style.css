@@ -67,7 +67,7 @@ label {
   border-radius: 5px 5px;
 }
 
-#category {
+.category {
   float: left;
   width: 15%;
   height: 25px;

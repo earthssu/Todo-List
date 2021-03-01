@@ -8,33 +8,30 @@ const selectInput = document.querySelector("#todo-select");
 
 const todoList = document.querySelector("#todo-list");
 const completeList = document.querySelector("#complete-list");
+const categoryList = document.querySelector(".category");
 
 let todoBucket = [];
 let completeBucket = [];
+
+const category = {
+  school: "학교",
+  schedule: "외부",
+  anniversary: "기념일",
+  etc: "기타",
+  all: "전체",
+};
 
 const guid = () => {
   return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
 };
 
-const replaceSelect = (select) => {
-  if (select === "school") {
-    return "학교";
-  } else if (select === "schedule") {
-    return "외부";
-  } else if (select === "anniversary") {
-    return "기념일";
-  } else if (select === "etc") {
-    return "기타";
-  } else if (select === "all") {
-    return "전체";
-  }
-};
+const replaceSelect = (key) => category[key];
 
 const getDday = (date) => {
-  let today = new Date();
+  const today = new Date();
   const [year, month, day] = date.split("-");
-  let dueDate = new Date(year, month - 1, day);
-  let gap = today.getTime() - dueDate.getTime();
+  const dueDate = new Date(year, month - 1, day);
+  const gap = today.getTime() - dueDate.getTime();
   let dday = Math.floor(gap / (1000 * 60 * 60 * 24)) * -1;
 
   if (dday == 0) {
@@ -98,7 +95,7 @@ const renderTodos = (todoBucket) => {
     <span class='item todo-item'>${item.title} </span>
     <span class='item date-item'>${item.date}</span>
     <span class='dday'>D${item.dday}</span>
-    <button type='button' class='remove' onClick='todoRemove("${item.id}")'>삭제</button>
+    <button type='button' class='remove'>삭제</button>
     <button type='button' class='complete'>완료</button>`;
 
     todoList.appendChild(li);
@@ -144,7 +141,7 @@ const completeRemove = (id) => {
 };
 
 const categoryChange = () => {
-  const category = document.querySelector("#category").value;
+  const category = document.querySelector(".category").value;
   const cateReplace = replaceSelect(category);
 
   let todos = JSON.parse(localStorage.getItem("todoItems"));
@@ -157,7 +154,7 @@ const categoryChange = () => {
 };
 
 const ddayChange = (todos) => {
-  todos = todos.map((item) => {
+  todos.map((item) => {
     item.dday = getDday(item.date);
   });
 };
@@ -167,12 +164,12 @@ const getFromLocalStorage = () => {
   const completeReference = localStorage.getItem("completeItems");
 
   if (todoReference) {
-    todos = JSON.parse(todoReference);
+    const todos = JSON.parse(todoReference);
     ddayChange(todos);
     renderTodos(todos);
   }
   if (completeReference) {
-    complete = JSON.parse(completeReference);
+    const complete = JSON.parse(completeReference);
     renderComplete(complete);
   }
 };
@@ -199,3 +196,5 @@ completeList.addEventListener("click", (event) => {
     completeRemove(event.target.parentElement.getAttribute("id"));
   }
 });
+
+categoryList.addEventListener("change", categoryChange);
