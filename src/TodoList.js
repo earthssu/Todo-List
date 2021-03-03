@@ -1,4 +1,5 @@
 import "./style.css";
+import notifyImg from "../img/notification-icon.png";
 
 const todoForm = document.querySelector("#todo-form");
 
@@ -154,7 +155,7 @@ const categoryChange = () => {
 };
 
 const ddayChange = (todos) => {
-  todos.map((item) => {
+  todos.forEach((item) => {
     item.dday = getDday(item.date);
   });
 };
@@ -198,3 +199,26 @@ completeList.addEventListener("click", (event) => {
 });
 
 categoryList.addEventListener("change", categoryChange);
+
+window.addEventListener("load", () => {
+  if (Notification && Notification.permission !== "granted") {
+    Notification.requestPermission(function (status) {
+      if (Notification.permission !== status) {
+        Notification.permission = status;
+      }
+    });
+  }
+
+  const todos = JSON.parse(localStorage.getItem("todoItems"));
+
+  if (Notification && Notification.permission === "granted") {
+    todos.forEach((item) => {
+      if (item.dday == -1) {
+        let notify = new Notification("마감 기한 하루 전!", {
+          body: item.title,
+          icon: notifyImg,
+        });
+      }
+    });
+  }
+});

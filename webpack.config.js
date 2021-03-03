@@ -21,6 +21,10 @@ module.exports = {
           presets: ["@babel/preset-env"],
         },
       },
+      {
+        test: /\.png$/,
+        loader: "file-loader",
+      },
     ],
   },
   devServer: {
