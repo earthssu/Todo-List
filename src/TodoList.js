@@ -86,6 +86,8 @@ const addComplete = (id) => {
 const renderTodos = (todoBucket) => {
   todoList.innerHTML = "";
 
+  let fragment = new DocumentFragment();
+
   todoBucket.forEach((item) => {
     let li = document.createElement("li");
     li.setAttribute("class", "list-item");
@@ -99,12 +101,16 @@ const renderTodos = (todoBucket) => {
     <button type='button' class='remove'>삭제</button>
     <button type='button' class='complete'>완료</button>`;
 
-    todoList.appendChild(li);
+    fragment.appendChild(li);
   });
+
+  todoList.appendChild(fragment);
 };
 
 const renderComplete = (completeBucket) => {
   completeList.innerHTML = "";
+
+  let fragment = new DocumentFragment();
 
   completeBucket.forEach((item) => {
     let li = document.createElement("li");
@@ -117,8 +123,10 @@ const renderComplete = (completeBucket) => {
     <span class='item'>${item.date}</span>
     <button type='button' class='remove'>삭제</button>`;
 
-    completeList.appendChild(li);
+    fragment.appendChild(li);
   });
+
+  completeList.appendChild(fragment);
 };
 
 const todoStorage = (todoBucket) => {
@@ -158,6 +166,7 @@ const ddayChange = (todos) => {
   todos.forEach((item) => {
     item.dday = getDday(item.date);
   });
+  todoStorage(todos);
 };
 
 const getFromLocalStorage = () => {
