@@ -86,7 +86,7 @@ const addComplete = (id) => {
 const renderTodos = (todoBucket) => {
   todoList.innerHTML = "";
 
-  let fragment = new DocumentFragment();
+  const fragment = new DocumentFragment();
 
   todoBucket.forEach((item) => {
     let li = document.createElement("li");
@@ -95,11 +95,11 @@ const renderTodos = (todoBucket) => {
 
     li.innerHTML = `
     <span class="select-item">${item.select}</span>
-    <span class='item todo-item'>${item.title} </span>
-    <span class='item date-item'>${item.date}</span>
-    <span class='dday'>D${item.dday}</span>
-    <button type='button' class='remove'>삭제</button>
-    <button type='button' class='complete'>완료</button>`;
+    <span class="item todo-item">${item.title} </span>
+    <span class="item date-item">${item.date}</span>
+    <span class="dday">D${item.dday}</span>
+    <button type="button" class="remove">삭제</button>
+    <button type="button" class="complete">완료</button>`;
 
     fragment.appendChild(li);
   });
@@ -110,7 +110,7 @@ const renderTodos = (todoBucket) => {
 const renderComplete = (completeBucket) => {
   completeList.innerHTML = "";
 
-  let fragment = new DocumentFragment();
+  const fragment = new DocumentFragment();
 
   completeBucket.forEach((item) => {
     let li = document.createElement("li");
@@ -119,9 +119,9 @@ const renderComplete = (completeBucket) => {
 
     li.innerHTML = `
     <span class="select-item">${item.select}</span>
-    <span class='item'>${item.title}</span>
-    <span class='item'>${item.date}</span>
-    <button type='button' class='remove'>삭제</button>`;
+    <span class="item">${item.title}</span>
+    <span class='item">${item.date}</span>
+    <button type="button" class="remove">삭제</button>`;
 
     fragment.appendChild(li);
   });
